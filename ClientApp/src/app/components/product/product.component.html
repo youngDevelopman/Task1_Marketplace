@@ -1,0 +1,16 @@
+<div class="container my-4" *ngIf="product">
+  <div class="row">
+    <div class="col-md-6">
+      <img [src]="product.image" alt="{{ product.name }}" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <h2>{{ product.name }}</h2>
+      <p class="lead">{{ product.description }}</p>
+      <p class="font-weight-bold">Price: ${{ product.price }}</p>
+      <p>Rating: {{ displayRating(product.rating) }}</p>
+      <!-- Add more product details as needed -->
+      <!-- Example: Add a "Buy Now" button -->
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>

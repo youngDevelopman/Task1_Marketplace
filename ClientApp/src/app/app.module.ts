@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { SignInComponent } from './components/sign-in-component/sign-in.component';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,6 +35,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'product', component: ProductComponent },
       { path: 'signin', component: SignInComponent },
     ])
   ],
