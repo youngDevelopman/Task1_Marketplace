@@ -5,7 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AuthGuard } from './guards/auth-guard';
@@ -13,6 +13,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { FormsModule } from '@angular/forms';
 import { SignInComponent } from './components/sign-in-component/sign-in.component';
 import { CommonModule } from '@angular/common';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CommonModule } from '@angular/common';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
