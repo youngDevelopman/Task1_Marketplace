@@ -21,6 +21,24 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\guards\auth-guard.ts" />
+    <None Remove="ClientApp\src\app\interceptors\auth-interceptor.ts" />
+    <None Remove="ClientApp\src\app\models\Response.ts" />
+    <None Remove="ClientApp\src\app\models\UserClaim.ts" />
+    <None Remove="ClientApp\src\app\services\AuthService.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\guards\auth-guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\interceptors\auth-interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Response.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\models\UserClaim.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\AuthService.ts" />
+  </ItemGroup>
+
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
