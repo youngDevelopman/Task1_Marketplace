@@ -7,6 +7,7 @@ using Task1_Marketplace.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
 var mongoConfigSection = builder.Configuration.GetSection("Database");
 builder.Services.Configure<MongoDbConfiguration>(mongoConfigSection);
 builder.Services.AddSingleton(new MongoClient(mongoConfigSection["ConnectionString"]).GetDatabase(mongoConfigSection["DatabaseName"]));
@@ -15,6 +16,7 @@ pack.Add(new CamelCaseElementNameConvention());
 
 ConventionRegistry.Register("Camel case convention", pack, t => true);
 builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

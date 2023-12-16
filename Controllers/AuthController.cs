@@ -4,51 +4,43 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Task1_Marketplace.Services;
+using Task1_Marketplace.Models;
 
 namespace Task1_Marketplace.Controllers
 {
-    public record SignInRequest(string Email, string Password);
     public record Response(bool IsSuccess, string Message);
     public record UserClaim(string Type, string Value);
-    public record User(string Email, string Name, string Password);
 
 
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private List<User> users = new()
+        private readonly IUserService _userService;  
+        public AuthController(IUserService userService)
         {
-            new("user1@test.com", "User 1", "user1"),
-            new("user2@test.com", "User 2", "user2"),
-        };
+            _userService = userService;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterRequest registerRequest)
+        {
+            try
+            {
+                await _userService.RegisterAsync(registerRequest);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok();
+        }
 
         [HttpPost("signin")]
         public async Task<IActionResult> SignInAsync([FromBody] SignInRequest signInRequest)
         {
-            var user = users.FirstOrDefault(x => x.Email == signInRequest.Email &&
-                                                x.Password == signInRequest.Password);
-            if (user is null)
-            {
-                return BadRequest(new Response(false, "Invalid credentials."));
-            }
-
-            var claims = new List<Claim>
-            {
-                new Claim(type: ClaimTypes.Email, value: signInRequest.Email),
-                new Claim(type: ClaimTypes.Name,value: user.Name)
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(identity),
-                new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                    AllowRefresh = true,
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                });
+            await _userService.SignInAsync(signInRequest);
 
             return Ok(new Response(true, "Signed in successfully"));
         }
