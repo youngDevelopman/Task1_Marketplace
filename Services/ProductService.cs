@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Amazon.Runtime.Internal;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.ComponentModel;
+using System.Security.Claims;
 using Task1_Marketplace.Configuration;
 using Task1_Marketplace.Domain;
+using Task1_Marketplace.Models;
 
 namespace Task1_Marketplace.Services
 {
@@ -12,6 +15,7 @@ namespace Task1_Marketplace.Services
     {
         private readonly IMongoDatabase _db;
         private readonly string _collection;
+        private readonly HttpContext _httpContext;
         private IMongoCollection<Product> Products 
         { 
             get 
@@ -19,8 +23,9 @@ namespace Task1_Marketplace.Services
                 return _db.GetCollection<Product>(_collection); 
             } 
         }
-        public ProductService(IMongoDatabase client, IOptions<MongoDbConfiguration> config)
+        public ProductService(IHttpContextAccessor contextAccessor, IMongoDatabase client, IOptions<MongoDbConfiguration> config)
         {
+            _httpContext = contextAccessor.HttpContext;
             _db = client;
             _collection = config.Value.Collections.Products;
         }
@@ -41,9 +46,25 @@ namespace Task1_Marketplace.Services
             return product;
         }
 
-        public async Task AddProductAsync(Product product)
+        public async Task AddProductAsync(AddProductRequest request)
         {
-            //return null;
+            var nameIdentifierClaim = _httpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+            var nameClaim = _httpContext.User.FindFirst(ClaimTypes.Name);
+            var product = new Product()
+            {
+                Description = request.Description,
+                Image = request.Image,
+                Name = request.Name,
+                Price = request.Price,
+                Rating = request.Rating,
+                User = new UserInfo()
+                {
+                    Id = nameIdentifierClaim.Value,
+                    Name = nameClaim.Value,
+                }
+            };
+
+            await Products.InsertOneAsync(product);
         }
     }
 }

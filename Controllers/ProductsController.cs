@@ -18,8 +18,6 @@ namespace Task1_Marketplace.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProductsAsync()
         {
-            var u = User;
-            var t = Request.Cookies;
             var result = await _productService.GetProductsAsync();
             return Ok(result);
         }
@@ -38,7 +36,8 @@ namespace Task1_Marketplace.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProductAsync(AddProductRequest request)
         {
-            return null;
+            await _productService.AddProductAsync(request);
+            return Ok();
         }
     }
 }

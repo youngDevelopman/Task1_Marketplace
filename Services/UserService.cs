@@ -66,6 +66,7 @@ namespace Task1_Marketplace.Services
 
             var claims = new List<Claim>
             {
+                new Claim(type: ClaimTypes.NameIdentifier, value: existingUser.Id.ToString()),
                 new Claim(type: ClaimTypes.Email, value: existingUser.Email),
                 new Claim(type: ClaimTypes.Name,value: existingUser.Name)
             };
