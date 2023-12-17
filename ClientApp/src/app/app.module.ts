@@ -4,10 +4,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AuthGuard } from './guards/auth-guard';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,8 +21,6 @@ import { CreateProductComponent } from './components/create-product/create-produ
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     ProductCardComponent,
     ProductComponent,
     SearchBarComponent,

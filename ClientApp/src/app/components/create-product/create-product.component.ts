@@ -26,7 +26,6 @@ export class CreateProductComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid) {
-      // Assuming you have a method to add the product
       const product = {
         name: this.productForm.value.name,
         description: this.productForm.value.description,
@@ -40,7 +39,6 @@ export class CreateProductComponent implements OnInit {
           this.productForm.reset();
         },
         error: (error) => {
-          // Handle error
           console.error('Error adding product:', error);
         }
       });
@@ -49,6 +47,6 @@ export class CreateProductComponent implements OnInit {
 
   private showSuccessMessage() {
     this.successMessageVisible = true;
-    setTimeout(() => this.successMessageVisible = false, 3000); // Message visible for 3 seconds
+    setTimeout(() => this.successMessageVisible = false, 3000);
   }
 }
