@@ -15,7 +15,7 @@ Provide connection string for MongoDb instance in the appsettings.Development.js
 ```
 
 Then, run ```dotnet run``` or ```ctrl + f5``` in Visual Studio(preferred)
-When the application has started it does the following:
+When the application is started it will do the following:
 1. Seed MongoDB Database(Add Users, Products and indexes)
 2. Run ASP.NET Core instance
 3. Run the Angular app as a proxy
