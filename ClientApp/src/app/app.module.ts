@@ -16,6 +16,7 @@ import { ProductComponent } from './components/product/product.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { PageVisitGuard } from './guards/page-visit-tracker-interceptor';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -53,7 +54,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'product/create', component: CreateProductComponent, canActivate: [AuthGuard] },
-      { path: 'product/:id', component: ProductComponent },
+      { path: 'product/:id', component: ProductComponent, canActivate: [PageVisitGuard] },
       { path: 'signin', component: SignInComponent },
     ])
   ],

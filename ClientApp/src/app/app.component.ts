@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
-import { NgcCookieConsentService } from 'ngx-cookieconsent';
+import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  constructor(private ccService: NgcCookieConsentService) {
-    this.ccService.popupOpen$.subscribe(
-      // Your code when cookie consent popup is opened
-    );
+  private isTrackingAvailableKey = 'isTrackingAvailable';
 
-    this.ccService.popupClose$.subscribe(
-      // Your code when cookie consent popup is closed
+  constructor(
+    private ccService: NgcCookieConsentService,
+  ) {
+    this.ccService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) => {
+        document.cookie = this.isTrackingAvailableKey + "=" + (event.status || "") + "; path=/";
+      }
     );
   }
 }
