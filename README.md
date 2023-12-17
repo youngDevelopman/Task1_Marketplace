@@ -22,6 +22,12 @@ When the application has started it does the following:
 
 This way, the configuration of the app is as easy as possible.
 
+**Features and Requirements Compliance**
 
+Data Structure: The application contains sSer and Product entities.
+CRUD Functionality: Users can be registered and logged-in. Products can be added and viewed.
+Angular Front-End: Angular framework is used for the frontend part. CRUD functionality is available via frontend(except user registration)
+MongoDB Integration: Users and Products are stored in MongoDb in separate collections. Also, the product search bar feature was added that utilizes the compound text search feature of MongoDB.
+GDPR Consideration: A Cookie banner was added to the frontend(click on the black rectangle on left bottom of the screen in order to show the GDRP banner). If accepted the amount of product page views will be tracked and stored in the cookies. Once disabled, the amount won't be tracked.
 
 
