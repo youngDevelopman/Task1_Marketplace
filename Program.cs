@@ -24,6 +24,14 @@ builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    // This lambda determines whether user consent for non-essential 
+    // cookies is needed for a given request.
+    options.CheckConsentNeeded = context => true;
+
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -46,7 +54,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapDefaultControllerRoute();
-
+app.UseCookiePolicy();
 
 app.MapControllerRoute(
     name: "default",
