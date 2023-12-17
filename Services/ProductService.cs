@@ -36,14 +36,28 @@ namespace Task1_Marketplace.Services
             return products;
         }
 
-        public async Task<Product> GetProductAsync(string id)
+        public async Task<GetProductResponse> GetProductAsync(string id)
         {
-            if(ObjectId.TryParse(id, out var productId))
+            if(!ObjectId.TryParse(id, out var productId))
             {
                 return null;
             }
             var product = await Products.AsQueryable().Where(x => id == x.Id).FirstOrDefaultAsync();
-            return product;
+            var response = new GetProductResponse()
+            {
+                Id = product.Id,
+                Description = product.Description,
+                Image = product.Image,
+                AddedBy = new Models.UserInfo()
+                {
+                    Id = product.AddedBy.Id,
+                    Name = product.AddedBy.Name,
+                },
+                Name = product.Name,
+                Price = product.Price,
+                Rating = product.Rating
+            };
+            return response;
         }
 
         public async Task AddProductAsync(AddProductRequest request)
@@ -57,7 +71,7 @@ namespace Task1_Marketplace.Services
                 Name = request.Name,
                 Price = request.Price,
                 Rating = request.Rating,
-                User = new UserInfo()
+                AddedBy = new Domain.UserInfo()
                 {
                     Id = nameIdentifierClaim.Value,
                     Name = nameClaim.Value,

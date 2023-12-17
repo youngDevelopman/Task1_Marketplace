@@ -35,7 +35,7 @@ import { ProductComponent } from './components/product/product.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'product', component: ProductComponent },
+      { path: 'product/:id', component: ProductComponent },
       { path: 'signin', component: SignInComponent },
     ])
   ],

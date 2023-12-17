@@ -29,6 +29,7 @@
     <None Remove="ClientApp\src\app\models\Response.ts" />
     <None Remove="ClientApp\src\app\models\UserClaim.ts" />
     <None Remove="ClientApp\src\app\services\AuthService.ts" />
+    <None Remove="ClientApp\src\app\services\ProductService.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\UserClaim.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\AuthService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\ProductService.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

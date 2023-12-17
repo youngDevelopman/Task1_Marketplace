@@ -6,7 +6,7 @@ namespace Task1_Marketplace.Services
     public interface IProductService
     {
         Task<List<Product>> GetProductsAsync();
-        Task<Product> GetProductAsync(string id);
+        Task<GetProductResponse> GetProductAsync(string id);
         Task AddProductAsync(AddProductRequest request);
     }
 }

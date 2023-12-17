@@ -1,15 +1,13 @@
 <div class="col">
-  <div class="card h-100">
-    <img src="{{ product.image }}" class="card-img-top" alt="Skyscrapers" />
-    <div class="card-body">
-      <h5 class="card-title">{{ product.name }}</h5>
-      <p class="card-text">
-        {{ product.description }}
-      </p>
+  <a [routerLink]="['/product', product.id]">
+    <div class="card h-100">
+      <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}" />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+      </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">Added By: {{ product.addedBy }}</small>
-    </div>
-  </div>
+  </a>
 </div>
-  

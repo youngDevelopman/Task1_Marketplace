@@ -4,6 +4,9 @@ export interface Product {
   price: number;
   description: string;
   image: string;
-  addedBy: string;
+  addedBy: {
+    id: string;
+    name: string;
+  }
   rating: number;
 }

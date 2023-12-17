@@ -1,12 +1,7 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace Task1_Marketplace.Domain
+﻿namespace Task1_Marketplace.Models
 {
-    public class Product
+    public class GetProductResponse
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
@@ -18,8 +13,8 @@ namespace Task1_Marketplace.Domain
 
     public class UserInfo
     {
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string Name { get; set; }
     }
 }
+
