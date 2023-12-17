@@ -24,7 +24,7 @@ This way, the configuration of the app is as easy as possible.
 
 **Features and Requirements Compliance**
 
-Data Structure: The application contains sSer and Product entities.
+Data Structure: The application contains User and Product entities.
 
 CRUD Functionality: Users can be registered and logged in. Products can be added and viewed.
 
