@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Task1_Marketplace.Models;
 using Task1_Marketplace.Services;
@@ -41,6 +42,7 @@ namespace Task1_Marketplace.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddProductAsync(AddProductRequest request)
         {
             await _productService.AddProductAsync(request);
