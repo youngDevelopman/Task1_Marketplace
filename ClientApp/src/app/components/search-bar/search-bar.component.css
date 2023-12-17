@@ -1,0 +1,59 @@
+/* Style the input field */
+input[type="text"] {
+width: 100%; /* Full width */
+padding: 10px; /* Some padding for comfort */
+border: 1px solid #ccc; /* A light border */
+border-radius: 4px; /* Rounded corners */
+box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Slight shadow for depth */
+font-size: 16px; /* Readable text size */
+}
+
+/* Style the dropdown list */
+ul {
+list-style: none; /* Remove default list styling */
+padding: 0; /* Remove default padding */
+margin: 0; /* Align with the input field */
+border: 1px solid #ccc; /* Border similar to the input field */
+border-top: none; /* Seamless transition from input to dropdown */
+max-height: 300px; /* Limit height of dropdown */
+overflow-y: auto; /* Enable scrolling for many items */
+background-color: #fff; /* White background */
+box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Consistent shadow with input */
+position: absolute; /* Position relative to the input field */
+width: calc(100% - 2px); /* Match width with the input field */
+z-index: 1000; /* Ensure it's above other elements */
+top: 100%; /* Directly below the input field */
+left: 0;
+}
+
+/* Style each item in the dropdown */
+ul li {
+padding: 10px; /* Comfortable padding */
+border-bottom: 1px solid #eee; /* Slight separation between items */
+cursor: pointer; /* Indicate that items are selectable */
+transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for dropdown items */
+ul li:hover {
+background-color: #f9f9f9; /* Light grey background on hover */
+}
+
+/* Ensure last item in the list doesn't have a bottom border */
+ul li:last-child {
+border-bottom: none;
+}
+
+ul li a {
+display: block; /* Make the link fill the entire list item */
+padding: 10px; /* Padding for comfortable clicking */
+color: inherit; /* Inherit text color from parent */
+text-decoration: none; /* Remove underline from links */
+transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for links */
+ul li a:hover {
+  background-color: #f9f9f9; /* Light grey background on hover */
+  text-decoration: none; /* Ensure no underline on hover */
+}

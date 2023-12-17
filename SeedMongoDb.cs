@@ -99,7 +99,72 @@ namespace Task1_Marketplace
                             Id = addedBy.Id,
                             Name = addedBy.Name,
                         }
-                    }
+                    },
+                    new Product()
+                    {
+                        Name = "ZenSpace Indoor Plant Kit",
+                        Description = "A beginner-friendly indoor plant kit to bring a bit of nature into your home. Includes pots, soil, seeds, and care instructions.",
+                        Image = "https://getsprigbox.com/cdn/shop/files/Herb_Garden_-_Extra_1_All_plants_growing.jpg?v=1687900929&width=1500", // Public domain image
+                        Price = 35.00,
+                        Rating = 4,
+                        AddedBy = new UserInfo()
+                        {
+                            Id = addedBy.Id,
+                            Name = addedBy.Name,
+                        }
+                    },
+                    new Product()
+                    {
+                        Name = "EcoLight Solar-Powered Garden Lights",
+                        Description = "Set of 6 solar-powered garden lights, perfect for lighting up your outdoor space in an eco-friendly way.",
+                        Image = "https://i.pinimg.com/736x/2b/c6/db/2bc6db7c154a30ba55022de33b4d81d1.jpg", // Public domain image
+                        Price = 29.99,
+                        Rating = 4,
+                        AddedBy = new UserInfo()
+                        {
+                            Id = addedBy.Id,
+                            Name = addedBy.Name,
+                        }
+                    },
+                    new Product()
+                    {
+                        Name = "PureAir Compact Air Purifier",
+                        Description = "A compact and efficient air purifier to improve air quality in your home or office. Features a HEPA filter and low energy consumption.",
+                        Image = "https://levoit.com.ua/image/cache/catalog/avatarki/core300white/1-900x900.png", // Public domain image
+                        Price = 75.00,
+                        Rating = 4,
+                        AddedBy = new UserInfo()
+                        {
+                            Id = addedBy.Id,
+                            Name = addedBy.Name,
+                        }
+                    },
+                    new Product()
+                    {
+                        Name = "GreenWave Reusable Coffee Cup",
+                        Description = "An insulated, reusable coffee cup made from sustainable materials. Keep your drinks hot or cold while reducing waste.",
+                        Image = "https://www.waterbottle.tech/wp-content/uploads/2018/10/coffee-mug-with-thread-lid-s641599-1.jpg", // Public domain image
+                        Price = 19.99,
+                        Rating = 2,
+                        AddedBy = new UserInfo()
+                        {
+                            Id = addedBy.Id,
+                            Name = addedBy.Name,
+                        }
+                    },
+                    new Product()
+                    {
+                        Name = "EcoWrite Bamboo Pen Set",
+                        Description = "A set of stylish pens made from sustainable bamboo. Smooth writing experience with an eco-conscious design.",
+                        Image = "https://images2.habeco.si/Upload/Product/bamboo-pen-set_23119_productmain.webp", // Public domain image
+                        Price = 14.99,
+                        Rating = 3,
+                        AddedBy = new UserInfo()
+                        {
+                            Id = addedBy.Id,
+                            Name = addedBy.Name,
+                        }
+                    },
                 };
 
                 collection.InsertMany(products);

@@ -22,6 +22,13 @@ namespace Task1_Marketplace.Controllers
             return Ok(result);
         }
 
+        [HttpPost("search")]
+        public async Task<IActionResult> SearchProductsAsync([FromBody] SearchProductRequest request)
+        {
+            var result = await _productService.SearchProductsAsync(request.SearchText);
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductAsync(string id)
         {

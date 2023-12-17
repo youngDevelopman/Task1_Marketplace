@@ -1,0 +1,6 @@
+<input type="text" [formControl]="searchControl">
+<ul *ngIf="results$ | async as results">
+  <li *ngFor="let result of results">
+    <a [routerLink]="['/product', result.id]">{{ result.name }}</a>
+  </li>
+</ul>

@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Security.Claims;
 using Task1_Marketplace.Configuration;
 using Task1_Marketplace.Domain;
@@ -79,6 +80,16 @@ namespace Task1_Marketplace.Services
             };
 
             await Products.InsertOneAsync(product);
+        }
+
+        public async Task<List<SearchProductsResult>> SearchProductsAsync(string searchText)
+        {
+            var filter = Builders<Product>.Filter.Text(searchText);
+            var productsFound = await Products.Find(filter).ToListAsync();
+            var result = productsFound
+                .Select(x => new SearchProductsResult() { Id = x.Id, Name = x.Name })
+                .ToList();
+            return result;
         }
     }
 }

@@ -9,6 +9,13 @@ import { Product } from "../models/Product";
 export class ProductService {
   constructor(private http: HttpClient) { }
 
+  searchProducts(searchText: string): Observable<{ id: string, name: string }[]> {
+    const request = {
+      searchText: searchText,
+    }
+    return this.http.post<{ id: string, name: string }[]>(`/api/products/search`, request);
+  }
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`/api/products`);
   }
