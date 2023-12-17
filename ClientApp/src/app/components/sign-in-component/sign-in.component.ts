@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(userName, password).subscribe(
       response => {
         if (response.isSuccess) {
-          this.router.navigateByUrl('fetch-data')
+          this.router.navigateByUrl('product/create')
         }
       },
       error => {
