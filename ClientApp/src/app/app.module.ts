@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductComponent } from './components/product/product.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     FetchDataComponent,
     ProductCardComponent,
     ProductComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,8 +38,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'product/create', component: CreateProductComponent, canActivate: [AuthGuard] },
       { path: 'product/:id', component: ProductComponent },
       { path: 'signin', component: SignInComponent },
     ])

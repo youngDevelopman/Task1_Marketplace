@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { CreateProduct } from "../models/CreateProduct";
 import { Product } from "../models/Product";
 
 @Injectable({
@@ -24,7 +25,7 @@ export class ProductService {
     return this.http.get<Product>(`/api/products/${id}`);
   }
 
-  addProduct(request: any): Observable<any> {
+  addProduct(request: CreateProduct): Observable<any> {
     return this.http.post(`/api/products`, request);
   }
 }
