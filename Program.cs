@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
+using Task1_Marketplace;
 using Task1_Marketplace.Configuration;
 using Task1_Marketplace.Services;
 
@@ -8,13 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
+
 var mongoConfigSection = builder.Configuration.GetSection("Database");
-builder.Services.Configure<MongoDbConfiguration>(mongoConfigSection);
-builder.Services.AddSingleton(new MongoClient(mongoConfigSection["ConnectionString"]).GetDatabase(mongoConfigSection["DatabaseName"]));
 var pack = new ConventionPack();
 pack.Add(new CamelCaseElementNameConvention());
 
 ConventionRegistry.Register("Camel case convention", pack, t => true);
+builder.Services.Configure<MongoDbConfiguration>(mongoConfigSection);
+var mongoClient = new MongoClient(mongoConfigSection["ConnectionString"]);
+SeedMongoDb.Seed(mongoClient, mongoConfigSection.Get<MongoDbConfiguration>());
+builder.Services.AddSingleton(mongoClient.GetDatabase(mongoConfigSection["DatabaseName"]));
+
 builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
